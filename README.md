@@ -5,7 +5,7 @@ TextBitWise is an advanced web application designed for **text analysis and summ
 ## **Features**  
 - 🚀 **AI-Powered Summarization** – Uses **BART (Hugging Face API)** to generate high-quality summaries.  
 - 🔥 **Real-time Processing** – Flask-SocketIO enables instant text summarization without page reloads.  
-- 🎨 **Neon Dark UI** – Sleek, futuristic design for an enhanced user experience.  
+- 🎨 **Beautiful UI** – Sleek, futuristic design for an enhanced user experience.  
 - 🌍 **Cross-Platform Support** – Fully responsive interface works on mobile & desktop.  
 - 🌐 **Live Demo Available** – Experience it instantly on **https://textbitwise.onrender.com/**.  
 
