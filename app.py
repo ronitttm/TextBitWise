@@ -1,8 +1,8 @@
+import os
+import requests
 import eventlet
 eventlet.monkey_patch()
 
-import os
-import requests
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, SubmitField
@@ -17,21 +17,26 @@ load_dotenv()
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "fallback_secret_key")
 
-# Initialize Flask-SocketIO
+# Initialize Flask-SocketIO with eventlet
 socketio = SocketIO(app, async_mode='eventlet')
 
-
 # Hugging Face API details
-API_URL = "https://router.huggingface.co/hf-inference/models/facebook/bart-large-cnn"
-HEADERS = {"Authorization": f"Bearer {os.getenv('HF_API_KEY', '')}"}
+HF_API_KEY = os.getenv("HF_API_KEY", "")
+API_URL = "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
+HEADERS = {"Authorization": f"Bearer {HF_API_KEY}"}
+
 
 # Flask-WTForms form
 class TextSummarizationForm(FlaskForm):
     text = TextAreaField("Enter your text", validators=[DataRequired()])
     submit = SubmitField("Summarize")
 
-# Function to query the Hugging Face API
+
+# Function to query Hugging Face API asynchronously
 def query(payload):
+    if not HF_API_KEY:
+        return "Error: API key missing. Set HF_API_KEY in environment variables."
+
     try:
         response = requests.post(API_URL, headers=HEADERS, json=payload)
         response.raise_for_status()
@@ -39,18 +44,20 @@ def query(payload):
     except requests.exceptions.RequestException as e:
         return f"Error: {str(e)}"
 
+
 @app.route("/", methods=["GET", "POST"])
 def home():
     form = TextSummarizationForm()
     return render_template("index.html", form=form)
 
-@app.route('/about')
+@app.route("/about")
 def about():
-    return render_template('about.html')
+    return render_template("about.html")
 
-@app.route('/contact')
+@app.route("/contact")
 def contact():
-    return render_template('contact.html')
+    return render_template("contact.html")
+
 
 @socketio.on("summarize_text")
 def handle_text_summarization(data):
@@ -59,9 +66,16 @@ def handle_text_summarization(data):
     if not text:
         emit("summary_response", {"summary": "Please enter text to summarize."})
         return
-    
+
+    # Run in background to avoid blocking
+    eventlet.spawn_n(send_summary, text)
+
+
+def send_summary(text):
     summary = query({"inputs": text})
-    emit("summary_response", {"summary": summary})
+    socketio.emit("summary_response", {"summary": summary})
+
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render assigns a port
+    socketio.run(app, host="0.0.0.0", port=port)
