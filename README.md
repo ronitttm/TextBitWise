@@ -21,18 +21,19 @@ TextBitWise is an advanced web application designed for **text analysis and summ
 ```bash
 git clone https://github.com/ronitttm/TextBitWise.git
 cd textbitwise
+```
 
 ## **Installation**  
 
 ### **Install dependencies:**  
 ```bash
 pip install -r requirements.txt
-
+```
 
 ## **Run the application:**  
 ```bash
 python app.py
-
+```
 
 ## **Usage**  
 - Open your web browser and navigate to **https://textbitwise.onrender.com/**.  
