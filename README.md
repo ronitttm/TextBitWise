@@ -23,8 +23,6 @@ git clone https://github.com/ronitttm/TextBitWise.git
 cd textbitwise
 ```
 
-## **Installation**  
-
 ### **Install dependencies:**  
 ```bash
 pip install -r requirements.txt
