@@ -18,12 +18,12 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "fallback_secret_key")
 
 # Initialize Flask-SocketIO with eventlet
-socketio = SocketIO(app, async_mode='eventlet')
+socketio = SocketIO(app, async_mode="eventlet")
 
 # Hugging Face API details
 HF_API_KEY = os.getenv("HF_API_KEY", "")
 API_URL = "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
-HEADERS = {"Authorization": f"Bearer {HF_API_KEY}"}
+HEADERS = {"Authorization": f"Bearer {HF_API_KEY}"} if HF_API_KEY else {}
 
 
 # Flask-WTForms form
@@ -38,11 +38,20 @@ def query(payload):
         return "Error: API key missing. Set HF_API_KEY in environment variables."
 
     try:
-        response = requests.post(API_URL, headers=HEADERS, json=payload)
+        response = requests.post(API_URL, headers=HEADERS, json=payload, timeout=10)
         response.raise_for_status()
-        return response.json()[0].get("summary_text", "Error: No summary returned.")
-    except requests.exceptions.RequestException as e:
-        return f"Error: {str(e)}"
+        result = response.json()
+
+        if isinstance(result, list) and result and "summary_text" in result[0]:
+            return result[0]["summary_text"]
+
+        return "Error: No summary returned."
+    except requests.exceptions.Timeout:
+        return "Error: Request timed out."
+    except requests.exceptions.HTTPError as http_err:
+        return f"HTTP Error: {http_err}"
+    except requests.exceptions.RequestException as req_err:
+        return f"Error: {req_err}"
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -50,9 +59,11 @@ def home():
     form = TextSummarizationForm()
     return render_template("index.html", form=form)
 
+
 @app.route("/about")
 def about():
     return render_template("about.html")
+
 
 @app.route("/contact")
 def contact():
