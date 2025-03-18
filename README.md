@@ -1,6 +1,6 @@
 # **TextBitWise 🚀**  
 
-TextBitWise is an advanced web application designed for **text analysis and summarization** using the **Hugging Face Inference API**. It provides an interactive platform for generating AI-powered text summaries efficiently. Built with **Flask**, **JavaScript**, and **CSS **, it ensures a smooth and futuristic user experience.  
+TextBitWise is an advanced web application designed for **text analysis and summarization** using the **Hugging Face Inference API**. It provides an interactive platform for generating AI-powered text summaries efficiently. Built with **Flask**, **JavaScript**, and **CSS**, it ensures a smooth and futuristic user experience.  
 
 ## **Features**  
 - 🚀 **AI-Powered Summarization** – Uses **BART (Hugging Face API)** to generate high-quality summaries.  
