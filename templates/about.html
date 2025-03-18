@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" type="image/png" href="static\assets\robot_favicon_64x64.png">
+
+    <title>About|TextBitWise</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">TextBitWise - AI Based Text Summarizer</a>
+        <nav class="navbar">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </nav>
+    </header>
+
+    <div class="about-container">
+        <h1>🚀 About TextBitWise</h1>
+        <p>
+            TextBitWise is an AI-powered text summarizer designed to condense lengthy content into clear, concise summaries with just a click. 
+            Whether you're a student, researcher, or professional, TextBitWise helps you extract key insights effortlessly, saving time and boosting productivity.
+        </p>
+        <p>
+            Built with cutting-edge AI, it understands context, preserves meaning, and delivers <b>precise, to-the-point</b> summaries—perfect for notes, articles, or reports.
+        </p>
+        <p>⚡ <b>Fast. Smart. Efficient.</b> Welcome to the future of text summarization.</p>
+    </div>
+</body>
+</html>

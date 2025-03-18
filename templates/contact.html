@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="static\assets\robot_favicon_64x64.png">
+    <title>Contact|TextBitWise</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="logo">TextBitWise - AI Based Text Summarizer</a>
+        <nav class="navbar">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Contact Section -->
+    <div class="contact-container">
+        <h1>Get in Touch</h1>
+        <p>Feel free to connect with me on LinkedIn or check out my projects on GitHub.</p>
+        
+        <div class="contact-links">
+            <a href="https://www.linkedin.com/in/ronitttm/" target="_blank" class="contact-link">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/ronitttm" target="_blank" class="contact-link">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="mailto:murpanironit@gmail.com" class="contact-link">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home|TextBitWise</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="static\assets\robot_favicon_64x64.png">
+
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">TextBitWise - AI Based Text Summarizer</a>
+        <nav class="navbar">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="input-section">
+            <h2>Enter Text</h2>
+            <textarea id="textInput" placeholder="Enter text to summarize..."></textarea>
+            <button id="summarizeBtn">Summarize</button>
+        </div>
+        <div class="output-section">
+            <h2>Summary</h2>
+            <p id="summary">Your summary will appear here...</p>
+            <button id="copyBtn">Copy Summary</button>
+        </div>
+    </div>
+    
+    <script>
+        var socket = io();
+        var summarizeBtn = document.getElementById("summarizeBtn");
+        var textInput = document.getElementById("textInput");
+        var summaryText = document.getElementById("summary");
+        var copyBtn = document.getElementById("copyBtn");
+
+        summarizeBtn.addEventListener("click", function() {
+            var text = textInput.value.trim();
+            if (text) {
+                summaryText.innerText = "Summarizing...";
+                socket.emit("summarize_text", { text: text });
+            }
+        });
+
+        socket.on("summary_response", function(data) {
+            summaryText.innerText = data.summary;
+        });
+
+        copyBtn.addEventListener("click", function() {
+            navigator.clipboard.writeText(summaryText.innerText).then(() => {
+                alert("Summary copied to clipboard!");
+            });
+        });
+    </script>
+</body>
+</html>

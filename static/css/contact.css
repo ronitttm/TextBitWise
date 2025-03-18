@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #181818;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+    color: #E0E0E0;
+}
+
+/* Header Styling */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 18px 80px;
+    background: rgba(24, 24, 24, 0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    color: #4FC3F7;
+    font-size: 26px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navbar a {
+    color: #E0E0E0;
+    font-size: 18px;
+    text-decoration: none;
+    margin-left: 30px;
+    transition: .3s;
+}
+
+.navbar a:hover,
+.navbar .active {
+    color: #FF80AB;
+}
+
+/* Contact Container - BIGGER SIZE */
+.contact-container {
+    width: 90%;  /* Increased width */
+    max-width: 950px; /* More space */
+    background: #242424;
+    padding: 60px; /* More padding */
+    border-radius: 18px; /* More rounded corners */
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.12); /* Slightly stronger glow */
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    margin-top: 120px;
+    text-align: center;
+}
+
+/* Contact Heading */
+.contact-container h1 {
+    font-size: 36px; /* Bigger font */
+    color: #4FC3F7;
+    margin-bottom: 25px;
+}
+
+/* Contact Text */
+.contact-container p {
+    font-size: 20px; /* Bigger text */
+    line-height: 1.8;
+    color: #E0E0E0;
+    margin-bottom: 35px;
+}
+
+/* Contact Links */
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Contact Buttons - Bigger and Bolder */
+.contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 22px; /* Bigger font */
+    font-weight: bold;
+    color: #E0E0E0;
+    text-decoration: none;
+    padding: 15px; /* More padding */
+    border-radius: 12px;
+    background: linear-gradient(45deg, #4FC3F7, #FF80AB);
+    transition: 0.3s;
+}
+
+.contact-link i {
+    font-size: 26px; /* Bigger icons */
+}
+
+.contact-link:hover {
+    background: linear-gradient(45deg, #FF80AB, #4FC3F7);
+    color: #000;
+    transform: scale(1.05); /* Slight hover effect */
+}
