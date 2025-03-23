@@ -30,6 +30,7 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
 }
 
 .logo {
@@ -44,25 +45,26 @@ body {
     font-size: 18px;
     text-decoration: none;
     margin-left: 30px;
-    transition: .3s;
+    transition: 0.3s ease-in-out;
 }
 
 .navbar a:hover {
     color: #FF80AB; /* Soft pink */
 }
 
-/* Main Content - INCREASED SIZE */
+/* Main Content */
 .container {
     display: flex;
     flex-direction: row;
     width: 95%;  /* Increased width */
-    max-width: 1300px; /* More space */
+    max-width: 1300px;
     background: #242424; /* Softer dark shade */
-    padding: 40px; /* More padding */
-    border-radius: 16px; /* More rounded corners */
+    padding: 40px;
+    border-radius: 16px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.15); /* Stronger glow */
     border: 2px solid rgba(255, 255, 255, 0.12);
     margin-top: 100px;
+    flex-wrap: wrap; /* Allows wrapping for smaller screens */
 }
 
 /* Input & Output Sections */
@@ -72,9 +74,10 @@ body {
     padding: 25px;
 }
 
+/* Titles */
 h2 {
     text-align: center;
-    font-size: 24px; /* Bigger font */
+    font-size: 24px;
     color: #4FC3F7;
     margin-bottom: 15px;
 }
@@ -86,7 +89,7 @@ textarea {
     padding: 14px;
     border: 2px solid #4FC3F7;
     border-radius: 10px;
-    font-size: 18px; /* Bigger font */
+    font-size: 18px;
     resize: none;
     outline: none;
     background: #333333;
@@ -101,15 +104,15 @@ textarea::placeholder {
 button {
     width: 100%;
     margin-top: 20px;
-    padding: 14px; /* More padding */
+    padding: 14px;
     background: linear-gradient(45deg, #4FC3F7, #FF80AB);
     color: #181818;
     border: none;
-    font-size: 18px; /* Bigger text */
+    font-size: 18px;
     font-weight: bold;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s ease-in-out;
 }
 
 button:hover {
@@ -128,7 +131,7 @@ button:hover {
 #summary {
     font-weight: bold;
     color: #E0E0E0;
-    font-size: 20px; /* Bigger font */
+    font-size: 20px;
     margin-top: 12px;
 }
 
@@ -141,4 +144,41 @@ button:hover {
 
 .copy-btn:hover {
     background: #FF80AB;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .input-section,
+    .output-section {
+        width: 100%;
+        padding: 15px;
+    }
+
+    textarea {
+        height: 180px;
+    }
+
+    button {
+        padding: 12px;
+    }
+
+    .header {
+        padding: 15px 40px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .navbar a {
+        font-size: 16px;
+        margin-left: 20px;
+    }
 }

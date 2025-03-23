@@ -30,6 +30,7 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
 }
 
 .logo {
@@ -44,71 +45,126 @@ body {
     font-size: 18px;
     text-decoration: none;
     margin-left: 30px;
-    transition: .3s;
+    transition: 0.3s ease-in-out;
 }
 
-.navbar a:hover,
-.navbar .active {
+.navbar a:hover {
     color: #FF80AB;
 }
 
-/* Contact Container - BIGGER SIZE */
+/* Contact Section */
 .contact-container {
-    width: 90%;  /* Increased width */
-    max-width: 950px; /* More space */
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 900px;
     background: #242424;
-    padding: 60px; /* More padding */
-    border-radius: 18px; /* More rounded corners */
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.12); /* Slightly stronger glow */
-    border: 2px solid rgba(255, 255, 255, 0.15);
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.12);
     margin-top: 120px;
     text-align: center;
 }
 
-/* Contact Heading */
+/* Heading */
 .contact-container h1 {
-    font-size: 36px; /* Bigger font */
+    font-size: 34px;
     color: #4FC3F7;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 /* Contact Text */
 .contact-container p {
-    font-size: 20px; /* Bigger text */
-    line-height: 1.8;
+    font-size: 18px;
+    line-height: 1.6;
     color: #E0E0E0;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
 /* Contact Links */
 .contact-links {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
 }
 
-/* Contact Buttons - Bigger and Bolder */
+/* Contact Buttons */
 .contact-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    font-size: 22px; /* Bigger font */
+    gap: 10px;
+    font-size: 20px;
     font-weight: bold;
     color: #E0E0E0;
     text-decoration: none;
-    padding: 15px; /* More padding */
-    border-radius: 12px;
+    padding: 12px;
+    border-radius: 10px;
     background: linear-gradient(45deg, #4FC3F7, #FF80AB);
-    transition: 0.3s;
+    transition: 0.3s ease-in-out;
 }
 
 .contact-link i {
-    font-size: 26px; /* Bigger icons */
+    font-size: 24px;
 }
 
 .contact-link:hover {
     background: linear-gradient(45deg, #FF80AB, #4FC3F7);
     color: #000;
-    transform: scale(1.05); /* Slight hover effect */
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .contact-container {
+        padding: 30px;
+        width: 95%;
+    }
+
+    .contact-container h1 {
+        font-size: 28px;
+    }
+
+    .contact-container p {
+        font-size: 16px;
+    }
+
+    .contact-link {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .header {
+        padding: 15px 40px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .navbar a {
+        font-size: 16px;
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-container {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .contact-container h1 {
+        font-size: 24px;
+    }
+
+    .contact-container p {
+        font-size: 14px;
+    }
+
+    .contact-link {
+        font-size: 16px;
+        padding: 8px;
+    }
 }
